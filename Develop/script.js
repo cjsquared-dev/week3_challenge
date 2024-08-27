@@ -33,20 +33,25 @@ const displayAverageSalary = function (employeesArray) {
   // TODO: Calculate and display the average salary
   let totalSalary = 0;
   employeesArray.forEach(employeesArray => {totalSalary += employeesArray.salary;});
-  let averageSalary = totalSalary/employeesArray.length;
-  let totalEmployees = employeesArray.length;
-  console.log(averageSalary);
-  const checkDecimals = function () {
-    if (averageSalary % 1 !== 0) {
-      return console.log(`The average employee salary between our ${totalEmployees} employee(s) is: ${averageSalary.toFixed(2)} when given salaries with decimals.`);
-    } else {
-      return console.log(`The average employee salary between our ${totalEmployees} employee(s) is: ${averageSalary.toFixed(2)} when given salaries with no decimals.`);
-    }
+  const averageSalary = totalSalary/employeesArray.length;
+  const averageSalaryWithTwoDecimals = parseFloat(averageSalary).toFixed(2);
+  
+//  console.log(averageSalaryWithTwoDecimals);
+  console.log(`The average employee salary between our ${employeesArray.length} employee(s) is $${averageSalaryWithTwoDecimals}`);
+  console.log(`The average employee salary between our ${employeesArray.length} employee(s) is $${averageSalary}`);
+
+  //log employee counts and check if decimals or not and provide respective messaging
+ // const checkDecimals = function () {
+ //   if (averageSalaryWithTwoDecimals % 1 !== 0) {
+ //     console.log(`The average employee salary between our ${employeesArray.length} employee(s) is: $${averageSalaryWithTwoDecimals.toFixed(2)} when given salaries with decimals.`);
+ //   } else {
+ //     console.log(`The average employee salary between our ${employeesArray.length} employee(s) is: $${averageSalary.toFixed(2)} when given salaries with no decimals.`);
+ //   }
   
     
-  }
+ // }
 
-  checkDecimals();
+ // checkDecimals();
   
 };
 
