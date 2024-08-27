@@ -1,35 +1,52 @@
 // Get a reference to the #add-employees-btn element
 const addEmployeesBtn = document.querySelector('#add-employees-btn');
-let employeesArray = [];
+
 
 // Collect employee data
 
 const collectEmployees = function () {
   // TODO: Get user input to create and return an array of employee objects
-
+  let employeesArray = [];
   let addEmployees = true;
 
   while (addEmployees) {
-    let firstName = window.prompt("What is your First Name?");
-    let lastName = window.prompt("What is your last name?");
-    let salaryInput = window.prompt("What is your salary?");
-    let salary = isNaN(parseInt(salaryInput)) ? 0 : parseInt(salaryInput);
+    let firstName = window.prompt("Employee's First Name?");
+    let lastName = window.prompt("Employee's Last Name?");
+    let salaryInput = window.prompt("Employee's Salary?");
+    let salary = isNaN(parseFloat(salaryInput)) ? 0 : parseFloat(salaryInput);
 
-    employeesArray.push({firstName: firstName, lastName: lastName, salary: salary});
+    employeesArray.push({
+      firstName: firstName,
+      lastName: lastName,
+      salary: salary
+    });
 
-    let continueInput = window.prompt("Do you want to add another employee? (yes/no)");
-    if (continueInput.toLowerCase() !== 'yes'){
-      addEmployees = false;
-    }
+    addEmployees = confirm('Would you like to add another employee?');
   
   } 
   return employeesArray;
 };
 
+
 // Display the average salary
 const displayAverageSalary = function (employeesArray) {
   // TODO: Calculate and display the average salary
+  let totalSalary = 0;
+  employeesArray.forEach(employeesArray => {totalSalary += employeesArray.salary;});
+  let averageSalary = totalSalary/employeesArray.length;
+  let totalEmployees = employeesArray.length;
+  console.log(averageSalary);
+  const checkDecimals = function () {
+    if (averageSalary % 1 !== 0) {
+      return console.log(`The average employee salary between our ${totalEmployees} employee(s) is: ${averageSalary.toFixed(2)} when given salaries with decimals.`);
+    } else {
+      return console.log(`The average employee salary between our ${totalEmployees} employee(s) is: ${averageSalary.toFixed(2)} when given salaries with no decimals.`);
+    }
   
+    
+  }
+
+  checkDecimals();
   
 };
 
