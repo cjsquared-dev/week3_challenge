@@ -10,32 +10,60 @@ const collectEmployees = function () {
   let addEmployees = true;
 
   while (addEmployees) {
-    let firstName = window.prompt("What is your First Name?");
-    let lastName = window.prompt("What is your last name?");
-    let salaryInput = window.prompt("What is your salary?");
-    let salary = isNaN(parseInt(salaryInput)) ? 0 : parseInt(salaryInput);
+    let firstName = window.prompt("Employee's First Name?");
+    let lastName = window.prompt("Employee's Last Name?");
+    let salaryInput = window.prompt("Employee's Salary?");
+    let salary = isNaN(parseFloat(salaryInput)) ? 0 : parseFloat(salaryInput);
 
-    employeesArray.push({firstName: firstName, lastName: lastName, salary: salary});
+    employeesArray.push({
+      firstName: firstName,
+      lastName: lastName,
+      salary: salary
+    });
 
-    let continueInput = window.prompt("Do you want to add another employee? (yes/no)");
-    if (continueInput.toLowerCase() !== 'yes'){
-      addEmployees = false;
-    }
+    addEmployees = confirm('Would you like to add another employee?');
   
   } 
-  console.log(employeesArray);
   return employeesArray;
 };
+
 
 // Display the average salary
 const displayAverageSalary = function (employeesArray) {
   // TODO: Calculate and display the average salary
+  let totalSalary = 0;
+  employeesArray.forEach(employeesArray => {totalSalary += employeesArray.salary;});
+  const averageSalary = totalSalary/employeesArray.length;
+  const averageSalaryWithTwoDecimals = parseFloat(averageSalary).toFixed(2);
+  
+//  console.log(averageSalaryWithTwoDecimals);
+  console.log(`The average employee salary between our ${employeesArray.length} employee(s) is $${averageSalaryWithTwoDecimals}`);
+  console.log(`The average employee salary between our ${employeesArray.length} employee(s) is $${averageSalary}`);
+
+  //log employee counts and check if decimals or not and provide respective messaging
+ // const checkDecimals = function () {
+ //   if (averageSalaryWithTwoDecimals % 1 !== 0) {
+ //     console.log(`The average employee salary between our ${employeesArray.length} employee(s) is: $${averageSalaryWithTwoDecimals.toFixed(2)} when given salaries with decimals.`);
+ //   } else {
+ //     console.log(`The average employee salary between our ${employeesArray.length} employee(s) is: $${averageSalary.toFixed(2)} when given salaries with no decimals.`);
+ //   }
+  
+    
+ // }
+
+ // checkDecimals();
   
 };
 
 // Select a random employee
 const getRandomEmployee = function (employeesArray) {
   // TODO: Select and display a random employee
+  const randomIndex = Math.floor(Math.random() * employeesArray.length);
+  const randomEmployee = employeesArray[randomIndex];
+  const {firstName, lastName} = randomEmployee;
+
+  console.log(`Congratulations to ${firstName} ${lastName}, our random drawing winner!`)
+
 };
 
 /*
